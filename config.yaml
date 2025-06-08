@@ -1,0 +1,14 @@
+data_path: "data/Iris.csv"
+model_output_path: "models"
+
+seed: 42
+test_size: 0.3
+
+cv_folds: 3
+random_search_iterations: 10
+
+search:
+  units_list: [8, 12, 16, 32]
+  epochs_list: [100, 150]
+  batch_size_list: [16, 32, 64]
+  learning_rate_list: [0.001, 0.01, 0.1]

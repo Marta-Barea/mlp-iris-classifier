@@ -62,8 +62,7 @@ mlp-iris-classifier/
 │   ├── data_loader.py   # Reads & splits data
 │   ├── model_builder.py # Defines the Keras MLP
 │   ├── train.py         # Hyperparameter search & model saving
-│   ├── evaluate.py      # Loads model & prints metrics
-│   └── utils.py         # (Optional) Helper functions
+│   └──  evaluate.py      # Loads model & prints metrics
 │
 └── run_all.py           # Runs train.py then evaluate.py
 ```

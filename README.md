@@ -46,6 +46,7 @@ This will:
 
 # Project Structure
 
+```
 mlp-iris-classifier/
 │
 ├── config.yaml          # Experiment settings
@@ -65,6 +66,7 @@ mlp-iris-classifier/
 │   └── utils.py         # (Optional) Helper functions
 │
 └── run_all.py           # Runs train.py then evaluate.py
+```
 
 # Dependencies 
 

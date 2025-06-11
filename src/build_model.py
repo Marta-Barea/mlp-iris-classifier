@@ -5,8 +5,10 @@ from tensorflow.keras.models import Sequential
 
 def build_model(input_dim: int, units: int = 8, learning_rate: float = 0.001):
     model = Sequential()
-    model.add(Dense(units, input_dim=input_dim, activation="relu"))
-    model.add(Dense(3, activation="softmax"))
+    model.add(Dense(units, input_dim=input_dim,
+              activation="relu", kernel_initializer="he_uniform"))
+    model.add(Dense(3, activation="softmax",
+              kernel_initializer="glorot_uniform"))
 
     model.compile(
         loss="sparse_categorical_crossentropy",

@@ -13,6 +13,7 @@ _config = load_config()
 
 DATA_PATH = _config.get("data_path", "data/iris.csv")
 MODEL_OUTPUT_PATH = _config.get("model_output_path", "model")
+CHECKPOINTS_OUTPUT_PATH = _config.get("checkpoints_output_path", "checkpoints")
 
 SEED = _config.get("seed", 42)
 TEST_SIZE = _config.get("test_size", 0.3)

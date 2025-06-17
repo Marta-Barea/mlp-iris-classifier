@@ -108,3 +108,6 @@ dmypy.json
 
 # Windows
 Thumbs.db
+
+# Checkpoint folder
+checkpoints/

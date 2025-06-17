@@ -1,5 +1,6 @@
 data_path: "data/Iris.csv"
 model_output_path: "models"
+checkpoints_output_path: "checkpoints"
 
 seed: 42
 test_size: 0.3

@@ -21,6 +21,7 @@ from .config import (
 
 from src.data_loader import load_data
 from src.build_model import build_model
+from .utils.plot_metrics import plot_metrics
 
 
 def train_model():
@@ -78,7 +79,7 @@ def train_model():
     )
 
     print("🚀 Training final model...")
-    final_model.fit(
+    results = final_model.fit(
         X_train, y_train,
         validation_split=0.2,
         epochs=best_params["epochs"],
@@ -86,6 +87,8 @@ def train_model():
         callbacks=[checkpoint_cb],
         verbose=1
     )
+
+    plot_metrics(results)
 
     final_model.load_weights(ckpt_path)
 

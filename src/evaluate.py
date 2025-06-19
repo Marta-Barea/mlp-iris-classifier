@@ -4,6 +4,7 @@ import tensorflow as tf
 import numpy as np
 
 from .data_loader import load_data
+from .utils.plot_confusion_matrix import plot_confusion_matrix
 from .config import MODEL_OUTPUT_PATH
 
 
@@ -32,12 +33,16 @@ def evaluate_model(model_path: str | None = None):
 
     print(
         f"\n📊 Train accuracy: {train_acc * 100:.2f}% (loss={train_loss:.4f})")
-    print(f"📊 Test  accuracy: {test_acc * 100:.2f}% (loss={test_loss:.4f})")
+    print(
+        f"📊 Test  accuracy: {test_acc * 100:.2f}% (loss={test_loss:.4f})")
 
     y_pred = np.argmax(model.predict(X_test[:10]), axis=1)
     print("\n🔎 First 10 predictions vs. actual values:")
     for i in range(10):
         print(f"     Predicted: {y_pred[i]}, Actual: {int(y_test[i])}")
+
+    print("\n📊 Plotting confusion matrix...")
+    plot_confusion_matrix(model, X_test, y_test)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,14 @@
+version: '2.3'
+
+services:
+  mlp-iris:
+    image: mlp-iris:latest
+    container_name: mlp-iris
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./reports:/app/reports
+      - ./models:/app/models
+      - ./checkpoints:/app/checkpoints
+    command: python run_all.py

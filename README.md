@@ -70,7 +70,7 @@ mlp-iris-classifier/
 ├── .gitignore           # Exclude files from Git tracking
 │
 ├── data/
-│   └── Iris.csv     # Iris Species Dataset
+│   └── Iris.csv         # Iris Species Dataset
 │
 ├── models/              # (Auto-created) Trained model & params
 │
@@ -79,7 +79,7 @@ mlp-iris-classifier/
 │
 ├── src/
 │   ├── config.py        # Loads config.yaml
-│   ├── data_loader.py   # Reads & splits data
+│   ├── data_loader.py   # Reads & splits data∫
 │   ├── model_builder.py # Defines the Keras MLP
 │   ├── train.py         # Hyperparameter search & model saving
 │   └──  evaluate.py      # Loads model & prints metrics

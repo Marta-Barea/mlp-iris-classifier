@@ -1,9 +1,13 @@
-import os
+from pathlib import Path
 import matplotlib.pyplot as plt
 
+from ..config import REPORTS_OUTPUT_PATH
 
-def plot_metrics(results, output_dir="reports/figures"):
-    os.makedirs(output_dir, exist_ok=True)
+
+def plot_metrics(results, output_dir=None):
+    output_dir = Path(output_dir or REPORTS_OUTPUT_PATH)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     plt.figure()
     plt.plot(results.history['loss'], label='train_loss')
     if 'val_loss' in results.history:
@@ -12,7 +16,7 @@ def plot_metrics(results, output_dir="reports/figures"):
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend()
-    plt.savefig(os.path.join(output_dir, 'loss.png'))
+    plt.savefig(output_dir / 'loss.png')
     plt.close()
 
     plt.figure()
@@ -23,5 +27,5 @@ def plot_metrics(results, output_dir="reports/figures"):
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
     plt.legend()
-    plt.savefig(os.path.join(output_dir, 'accuracy.png'))
+    plt.savefig(output_dir / 'accuracy.png')
     plt.close()

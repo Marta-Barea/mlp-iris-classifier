@@ -16,7 +16,8 @@ from .config import (
     RANDOM_SEARCH_ITERATIONS,
     MODEL_OUTPUT_PATH,
     CV_FOLDS,
-    CHECKPOINTS_OUTPUT_PATH
+    CHECKPOINTS_OUTPUT_PATH,
+    REPORTS_OUTPUT_PATH
 )
 
 from src.data_loader import load_data
@@ -24,10 +25,15 @@ from src.build_model import build_model
 from .utils.plot_metrics import plot_metrics
 
 
-def train_model():
+def train_model(model_dir=None, checkpoint_dir=None, reports_dir=None):
     random.seed(SEED)
     np.random.seed(SEED)
     tf.random.set_seed(SEED)
+
+    model_dir = Path(model_dir or MODEL_OUTPUT_PATH)
+    checkpoint_dir = Path(checkpoint_dir or CHECKPOINTS_OUTPUT_PATH)
+    reports_dir = Path(reports_dir or REPORTS_OUTPUT_PATH)
+    reports_dir.mkdir(parents=True, exist_ok=True)
 
     X_train, _, y_train, _ = load_data()
     input_dim = X_train.shape[1]
@@ -59,7 +65,7 @@ def train_model():
     print("🔍 Best hyperparameters:", best_params)
 
     run_ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    ckpt_dir = Path(CHECKPOINTS_OUTPUT_PATH)
+    ckpt_dir = checkpoint_dir
     ckpt_dir.mkdir(parents=True, exist_ok=True)
     ckpt_path = ckpt_dir / f"best_val_acc_{run_ts}.weights.h5"
 
@@ -88,12 +94,12 @@ def train_model():
         verbose=1
     )
 
-    plot_metrics(results)
+    plot_metrics(results, output_dir=reports_dir)
 
     final_model.load_weights(ckpt_path)
 
     out_ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    model_out_dir = Path(MODEL_OUTPUT_PATH)
+    model_out_dir = model_dir
     model_out_dir.mkdir(parents=True, exist_ok=True)
 
     final_model_path = model_out_dir / f"best_mlp_{out_ts}.h5"
